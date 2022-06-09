@@ -44,9 +44,22 @@ if __name__ == '__main__':
    dias_result_label.grid(column=2, row=9)
    dias_result_entry = Entry(janela)
    dias_result_entry.grid(column=2, row=10)
+   # label data desejada azul
+   data_desejada = Label(janela, text='Data desejada', background='blue')
+   data_desejada.grid(column=4, row=0, padx=0, pady=3)
    
-   data_niver = Label(janela, text='Data do aniversario', background='blue')
-   data_niver.grid(column=1, row=0, padx=0, pady=3)
+   dia_desejado_label = Label(janela, text='Dia desejado')
+   dia_desejado_label.grid(column=3, row=1)
+   dia_desejado = Entry(janela, text='Dia')
+   dia_desejado.grid(column=4, row=1)
+   # mes do niver
+   mes_desejado_label = Label(janela, text='Mês desejado').grid(column=3, row=2)
+   mes_desejado = Entry(janela)
+   mes_desejado.grid(column=4, row=2)
+   # ano do niver
+   ano_desejado_label = Label(janela, text='Ano desejado').grid(column=3, row=3)
+   ano_desejado = Entry(janela)
+   ano_desejado.grid(column=4, row=3)
    
    
    janela.mainloop() 
