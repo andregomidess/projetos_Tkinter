@@ -3,7 +3,25 @@ from tkinter import *
 from tkinter import messagebox
 
 def calcula_idade():
-    pass    
+    diaNiver = int(dia_niver.get())
+    mesNiver = int(mes_niver.get())
+    anoNiver = int(ano_niver.get())
+    
+    diaDesejado = int(dia_desejado.get())
+    mesDesejado = int(mes_desejado.get())
+    anoDesejado = int(ano_desejado.get())
+    
+    anos = anoDesejado - anoNiver
+    meses = mesDesejado - mesNiver
+    dias = diaDesejado - diaNiver
+    if meses < 0:
+        anos -= 1
+        meses += 12
+    if dias < 0:
+        dias += 30
+        meses -= 1  
+            
+      
 
 
 if __name__ == '__main__':
