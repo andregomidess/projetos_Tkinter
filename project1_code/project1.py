@@ -2,6 +2,8 @@ from cProfile import label
 from tkinter import *
 from tkinter import messagebox
 
+from click import command
+
 def calcula_idade():
     diaNiver = int(dia_niver.get())
     mesNiver = int(mes_niver.get())
@@ -19,9 +21,23 @@ def calcula_idade():
         meses += 12
     if dias < 0:
         dias += 30
-        meses -= 1  
+        meses -= 1
+    anos_result_entry.insert(0, str(anos))
+    meses_result_entry.insert(0, str(meses))
+    dias_result_entry.insert(0, str(dias))      
             
-      
+def reseta():
+    dia_niver.delete(0, END)
+    mes_niver.delete(0, END)    
+    ano_niver.delete(0, END)
+    
+    dia_desejado.delete(0, END)
+    mes_desejado.delete(0, END)
+    ano_desejado.delete(0, END)
+    
+    anos_result_entry.delete(0, END)
+    meses_result_entry.delete(0, END)
+    dias_result_entry.delete(0, END)                 
 
 
 if __name__ == '__main__':
@@ -34,7 +50,7 @@ if __name__ == '__main__':
    #dia do niver
    dia_niver_label = Label(janela, text='Dia')
    dia_niver_label.grid(column=0, row=1)
-   dia_niver = Entry(janela, text='Dia')
+   dia_niver = Entry(janela)
    dia_niver.grid(column=1, row=1)
    # mes do niver
    mes_niver_label = Label(janela, text='Mês').grid(column=0, row=2)
@@ -45,7 +61,7 @@ if __name__ == '__main__':
    ano_niver = Entry(janela)
    ano_niver.grid(column=1, row=3)
    # botão resultado
-   botao_result = Button(janela, text='Calcular idade', background='red')
+   botao_result = Button(janela, text='Calcular idade', background='red', fg='black' ,command=calcula_idade)
    botao_result.grid(column=2, row=4, padx =10, pady=10)
    # anos resultado
    anos_result_label = Label(janela, text='Anos')
@@ -68,7 +84,7 @@ if __name__ == '__main__':
    
    dia_desejado_label = Label(janela, text='Dia desejado')
    dia_desejado_label.grid(column=3, row=1)
-   dia_desejado = Entry(janela, text='Dia')
+   dia_desejado = Entry(janela)
    dia_desejado.grid(column=4, row=1)
    # mes do niver
    mes_desejado_label = Label(janela, text='Mês desejado').grid(column=3, row=2)
@@ -79,5 +95,6 @@ if __name__ == '__main__':
    ano_desejado = Entry(janela)
    ano_desejado.grid(column=4, row=3)
    
-   
+   limpa_tela = Button(janela, text='Limpar tela', background='red', command=reseta)
+   limpa_tela.grid(column=2, row=11, pady=10)
    janela.mainloop() 
