@@ -1,7 +1,11 @@
 import os, shutil
 from tkinter import *
-from tkinter import filedialog, messagebox
+from tkinter import filedialog
 
+
+def clear_all():
+    pasta_origem_entry.delete(0, END)
+    pasta_destino_entry.delete(0, END)
 
 def pergunta_dir_origem():
     global origem
@@ -22,9 +26,14 @@ def copia_seletiva():
         for filename in filenames:
             if filename.endswith('.py'):
                 shutil.copy(os.path.join(foldername, filename), pasta_destino)
+    msg = Label(janela, text='Copiado com sucesso!')
+    msg.grid(column =2, row=3)            
+    clear_all()
+                
 
 if __name__ == '__main__':
     janela = Tk()
+    janela.configure(background='pale goldenrod')
     janela.title('Copiador de .py')
     pasta_origem = Label(janela, text='Pasta origem', background='red')
     pasta_origem.grid(column = 0, row = 0, padx=3, pady=10)
@@ -41,6 +50,7 @@ if __name__ == '__main__':
     button_pasta_dest.grid(column =3, row=1)
     
     button_confirm = Button(janela, text='Confirmar copia .py', background='green', command=copia_seletiva).grid(column=2, row=2)
+    
     
     
     
