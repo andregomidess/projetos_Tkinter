@@ -17,7 +17,6 @@ def pergunta_dir_dest():
     
 def copia_seletiva():
     pasta_origem = os.path.abspath(str(pasta_origem_entry.get()))
-    print(pasta_origem )
     pasta_destino = os.path.abspath(str(pasta_destino_entry.get()))
     for foldername, subfolders, filenames in os.walk(pasta_origem):
         for filename in filenames:
@@ -42,6 +41,7 @@ if __name__ == '__main__':
     button_pasta_dest.grid(column =3, row=1)
     
     button_confirm = Button(janela, text='Confirmar copia .py', background='green', command=copia_seletiva).grid(column=2, row=2)
+    
     
     
     janela.mainloop()   
