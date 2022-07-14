@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
+from tkinter import ttk
 import aluno as alu
 import curso
 import disciplina as disc
@@ -23,14 +24,14 @@ class LimitePrincipal():
                     menu=self.alunoMenu)
 
         self.cursoMenu.add_command(label="Cadastrar Curso", \
-                    command=self.controle.insereDisciplinas)
+                    command=self.controle.cadastrarCurso)
         self.cursoMenu.add_command(label="Consultar", command=self.controle.consultaCurso)        
         self.menubar.add_cascade(label="Curso", \
                     menu=self.cursoMenu)
 
-        self.disciplinaMenu.add_command(label="Consultar", command=self.controle.consultaDisciplina)                     
+        self.disciplinaMenu.add_command(label="Cadastrar", command=self.controle.consultaDisciplina)                     
         self.menubar.add_cascade(label="Disciplina", \
-                    menu=self.turmaMenu)        
+                    menu=self.disciplinaMenu)        
 
         self.root.config(menu=self.menubar)
         
@@ -38,15 +39,34 @@ class ControlePrincipal():
     def __init__(self):
         self.root = tk.Tk()
 
-        self.ctrlEstudante = alu.CtrlAluno()
+        self.ctrlAluno = alu.CtrlAluno(self)
         self.ctrlCurso = curso.CtrlCurso(self)
-        self.ctrlTurma = disc.CtrlDisciplina()
+        self.ctrlDisciplina = disc.CtrlDisciplina(self)
 
         self.limite = LimitePrincipal(self.root, self) 
 
         self.root.title("Trabalho 12")
         # Inicia o mainloop
         self.root.mainloop()
+        
+    def insereAluno(self):
+        self.ctrlAluno.insereAluno()
+        
+    def cadastraDiscAluno(self):
+        self.ctrlAluno.cadastraDiscAluno()
+        
+    def consultaAluno(self):
+        self.ctrlAluno.consultaAluno()
+        
+    def cadastrarCurso(self):
+        self.ctrlCurso.cadastrarCurso()
+        
+    def consultaCurso(self):
+        self.ctrlCurso.consultaCurso()
+        
+    def consultaDisciplina(self):
+        self.ctrlDisciplina.consultaDisciplina()                    
+            
         
         
 if __name__ == '__main__':
