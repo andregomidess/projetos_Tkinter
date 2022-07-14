@@ -96,13 +96,13 @@ class LimiteInsereAluno(tk.Toplevel):
         
 class LimiteConsultaAluno():
     def __init__(self, str):
-        messagebox.showinfo('Dados do aluno', str)
+        messagebox.showinfo('Historico do aluno', str)
         
 class LimiteCadastraDiscCursada(tk.Toplevel):
     def __init__(self, controle):
 
         tk.Toplevel.__init__(self)
-        self.geometry('250x100')
+        self.geometry('300x150')
         self.title("Cadastrar disciplinas cursadas")
         self.controle = controle
         
@@ -165,11 +165,7 @@ class CtrlAluno():
         self.limiteIns = LimiteInsereAluno(self)
         
     def cadastraDiscAluno(self):
-        self.limiteDiscAl = LimiteCadastraDiscCursada(self)
-        
-    def consultaAluno(self):
-        self.limiteCons = LimiteConsultaAluno(self)         
-
+        self.limiteDiscAl = LimiteCadastraDiscCursada(self)        
         
     def consultaAluno(self):
         nro_mat = askstring("Consulta por n° matrícula", "Digite n° matrícula")
@@ -219,7 +215,7 @@ class CtrlAluno():
             if alunos.get_nro_matr() == nMat:
                 for discip in self.ControlePrincipal.ctrlDisciplina.listaDisciplinas:
                     if disc == discip.get_nome():
-                        alunos.inserir_disciplina_hist(disc)
+                        alunos.inserir_disciplina_hist(discip)
                         self.limiteIns.mostraJanela('Sucesso', 'Disciplina cadastrada com sucesso')
                     else:
                         self.limiteIns.mostraJanela('Falha', 'Disciplina inexistente!')

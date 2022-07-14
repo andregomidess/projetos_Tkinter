@@ -30,7 +30,7 @@ class LimiteConsultaDisciplina(tk.Toplevel):
     def __init__(self, controle):
 
         tk.Toplevel.__init__(self)
-        self.geometry('250x100')
+        self.geometry('300x150')
         self.title("disciplina")
         self.controle = controle
 

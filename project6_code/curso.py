@@ -140,6 +140,7 @@ class CtrlCurso():
 
     def clearHandler(self, event):
         self.limiteIns.inputCurso.delete(0, len(self.limiteIns.inputCurso.get()))
+        self.limiteIns.inputAnoGrade.delete(0, len(self.limiteIns.inputAnoGrade.get()))
     
 
     def fechaHandler(self, event):
