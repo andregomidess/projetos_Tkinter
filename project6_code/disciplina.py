@@ -94,14 +94,13 @@ class CtrlDisciplina():
         listaCurso = self.ControlePrincipal.ctrlCurso.listaCursos
         for cursos in listaCurso:
             if cursos.get_nome() == curso:
-                self.disc = disciplina(cod, nome, carga_hr, cursos.get_grade())
-                cursos.get_grade().add_disciplinas(self.disc)
-                self.listaDisciplinas.append(self.disc)
+                disc = disciplina(cod, nome, carga_hr, cursos.get_grade())
+                cursos.get_grade().add_disciplinas(disc)
+                self.listaDisciplinas.append(disc)
                 self.limiteIns.mostraJanela('Sucesso', 'Disciplina cadastrada com sucesso')
                 self.clearHandler(event)
-            else:
-                self.limiteIns.mostraJanela('Falha', 'Disciplina inexistente')
-                self.clearHandler(event)    
+                break
+                
 
     def clearHandler(self, event):
         self.limiteIns.inputCodigo.delete(0, len(self.limiteIns.inputCodigo.get()))

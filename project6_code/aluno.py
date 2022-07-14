@@ -160,6 +160,7 @@ class CtrlAluno():
     def __init__(self, controlePrincipal):
         self.ControlePrincipal = controlePrincipal
         self.listaAlunos = []
+        self.listaAprovReprov = []
 
     def insereAluno(self):
         self.limiteIns = LimiteInsereAluno(self)
@@ -169,11 +170,13 @@ class CtrlAluno():
         
     def consultaAluno(self):
         nro_mat = askstring("Consulta por n° matrícula", "Digite n° matrícula")
-        string = ''
+        tam = 0
+        string = 'Disciplina -- Ano -- Semestre -- Nota -- Situação \n'
         for al in self.listaAlunos:
             if nro_mat == al.get_nro_matr():
                 for disc_al in al.get_historico().get_disciplinas():
-                    string += disc_al.get_nome() + disc_al.get_codigo() + disc_al.get_carga_hr() + '\n'
+                    string += disc_al.get_nome() + ': ' +  self.listaAprovReprov[tam] + '\n'
+                    tam += 1
             else:
                 messagebox.showinfo('Alerta', 'N° de matrícula inexistente')
                 break
@@ -192,9 +195,9 @@ class CtrlAluno():
                 self.listaAlunos.append(Aluno)
                 self.limiteIns.mostraJanela('Sucesso', 'Estudante cadastrado com sucesso')
                 self.clearHandler(event)
-            else:
-                self.limiteIns.mostraJanela('Falha', 'Este curso não existe')
-                self.clearHandler(event)    
+            #else:
+                #self.limiteIns.mostraJanela('Falha', 'Este curso não existe')
+                #self.clearHandler(event)    
 
     def clearHandler(self, event):
         self.limiteIns.inputNro.delete(0, len(self.limiteIns.inputNro.get()))
@@ -211,15 +214,21 @@ class CtrlAluno():
         ano = self.limiteDiscAl.inputAno.get()
         semestre = self.limiteDiscAl.inputSemestre.get()
         nota = self.limiteDiscAl.inputNota.get()
+        str = ''
         for alunos in self.listaAlunos:
             if alunos.get_nro_matr() == nMat:
                 for discip in self.ControlePrincipal.ctrlDisciplina.listaDisciplinas:
                     if disc == discip.get_nome():
                         alunos.inserir_disciplina_hist(discip)
+                        if float(nota) >= 6.0:
+                            str = ano + ' ' + semestre + ' ' + nota + ' APROVADO'
+                        else:
+                            str = ano + semestre + nota + 'REPROVADO'
+                        self.listaAprovReprov.append(str)       
                         self.limiteIns.mostraJanela('Sucesso', 'Disciplina cadastrada com sucesso')
-                    else:
-                        self.limiteIns.mostraJanela('Falha', 'Disciplina inexistente!')
-                        break    
+                    #else:
+                        #self.limiteIns.mostraJanela('Falha', 'Disciplina inexistente!')
+                            
             else:
                 self.limiteIns.mostraJanela('Falha', 'N° informado não existe')
                 break    

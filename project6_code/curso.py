@@ -153,9 +153,7 @@ class CtrlCurso():
             if cursos.get_nome() == curso:
                 for i in cursos.get_grade().get_disciplinas():
                     string += i.get_codigo() + i.get_nome() + i.get_carga_hr() + '\n'
-            else:
-                self.limiteIns.mostraJanela('Falha', 'Curso inexistente')
-                break
+                               
         self.limiteIns.mostraJanela('Grade Curso', string)        
         
                             
